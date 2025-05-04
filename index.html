@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saiprakash Bollam | Software Engineer</title>
+  <link href="output.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #3B82F6;  /* blue-500 */
+      --secondary: #1E40AF; /* blue-800 */
+      --accent: #10B981;   /* emerald-500 */
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #111827; /* gray-900 */
+      color: #F3F4F6; /* gray-100 */
+    }
+    
+    .hero-gradient {
+        background: linear-gradient(135deg, #060e23, #0f2c8b);
+    }
+    
+    .section-title {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 50%;
+      height: 3px;
+      background: var(--primary);
+    }
+    
+    .card {
+      transition: all 0.3s ease;
+      background: linear-gradient(145deg, #1F2937, #111827);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      border-color: rgba(59, 130, 246, 0.3);
+    }
+    
+    .skill-pill {
+      background: rgba(59, 130, 246, 0.1);
+      transition: all 0.2s ease;
+    }
+    
+    .skill-pill:hover {
+      background: rgba(59, 130, 246, 0.3);
+      transform: scale(1.05);
+    }
+    
+    .timeline-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 3px solid #111827;
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+    
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+    
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .tech-icon {
+      transition: all 0.3s ease;
+    }
+    
+    .tech-icon:hover {
+      transform: translateY(-3px) scale(1.05);
+    }
+    
+    /* Chat widget styles */
+    #chat-widget {
+      transition: all 0.3s ease;
+    }
+    
+    .typing-indicator {
+      display: flex;
+      padding: 8px 12px;
+    }
+    
+    .typing-dot {
+      width: 6px;
+      height: 6px;
+      margin: 0 2px;
+      background-color: #9CA3AF;
+      border-radius: 50%;
+      opacity: 0;
+      animation: typingAnimation 1.4s infinite ease-in-out;
+    }
+    
+    .typing-dot:nth-child(1) { animation-delay: 0s; }
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    
+    @keyframes typingAnimation {
+      0%, 100% { opacity: 0; transform: translateY(0); }
+      50% { opacity: 1; transform: translateY(-5px); }
+    }
+    
+    .chat-message {
+      max-width: 80%;
+      word-wrap: break-word;
+    }
+    
+    .user-message {
+      background-color: #3B82F6;
+      color: white;
+      border-radius: 18px 18px 4px 18px;
+      margin-left: auto;
+    }
+    
+    .bot-message {
+      background-color: #1F2937;
+      color: white;
+      border-radius: 18px 18px 18px 4px;
+      margin-right: auto;
+    }
+    
+    .personality-tag {
+      background-color: rgba(59, 130, 246, 0.2);
+      border-left: 3px solid #3B82F6;
+    }
+    
+    .education-card {
+      background: linear-gradient(145deg, #1F2937, #111827);
+      border-left: 4px solid #3B82F6;
+    }
+
+    .text-justify {
+        text-align: justify;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-gray-100">
+  <!-- Navigation -->
+  <nav class="bg-gray-800 bg-opacity-90 backdrop-blur-sm fixed w-full z-50 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <div class="flex-shrink-0 flex items-center">
+          <span class="text-xl font-bold text-white">Saiprakash Bollam</span>
+        </div>
+        <div class="hidden md:block">
+          <div class="ml-10 flex items-center space-x-4">
+            <a href="#home" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+            <a href="#skills" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Skills</a>
+            <a href="#experience" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Experience</a>
+            <a href="#education" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Education</a>
+            <a href="#projects" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Projects</a>
+            <a href="#contact" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+          </div>
+        </div>
+        <div class="md:hidden">
+          <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Mobile menu -->
+    <div class="md:hidden hidden" id="mobile-menu">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <a href="#home" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
+        <a href="#skills" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Skills</a>
+        <a href="#experience" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Experience</a>
+        <a href="#education" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Education</a>
+        <a href="#projects" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projects</a>
+        <a href="#contact" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section with Resume Download -->
+  <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 px-4 sm:px-6 lg:px-8 hero-gradient">
+    <div class="max-w-7xl mx-auto">
+      <div class="md:flex md:items-center md:justify-between">
+        <div class="md:w-3/5 mb-8 md:mb-0">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+            Hi, I'm <span class="text-blue-400">Saiprakash</span>
+          </h1>
+          <div class="flex items-center mb-6">
+            <div class="h-1 w-12 bg-blue-400 mr-4"></div>
+            <h2 class="text-2xl md:text-3xl text-gray-300">
+              Software Engineer | Java Full-Stack Developer
+            </h2>
+          </div>
+          <p class="text-lg text-gray-300 mb-6 mr-4 max-w text-justify">
+            By day, I build scalable software solutions; by night, I’m busy debugging life’s little puzzles. 
+            When I’m not optimizing Java code, you’ll find me exploring new tech trends or  collaborating with tech enthusiasts.
+          </p>
+          
+          <div class="flex flex-wrap gap-3 mb-8">
+            <span class="personality-tag text-blue-400 px-3 py-1 rounded text-sm">Coffee-powered coder</span>
+            <span class="personality-tag text-blue-400 px-3 py-1 rounded text-sm">Problem solver</span>
+            <span class="personality-tag text-blue-400 px-3 py-1 rounded text-sm">Tech mentor</span>
+            <span class="personality-tag text-blue-400 px-3 py-1 rounded text-sm">API whisperer</span>
+          </div>
+          
+          <div class="flex flex-wrap gap-4">
+            <a href="#contact" class="border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white px-6 py-3 rounded-md font-medium transition duration-300 flex items-center">
+              <i class="fas fa-paper-plane mr-2"></i> Let's Talk Tech
+            </a>
+            <a href="#projects" class="border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white px-6 py-3 rounded-md font-medium transition duration-300 flex items-center">
+              <i class="fas fa-code mr-2"></i> See My Work
+            </a>
+            <a href="/assets/Saiprakash_Bollam.pdf" download class="border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white px-6 py-3 rounded-md font-medium transition duration-300 flex items-center">
+              <i class="fas fa-file-download mr-2"></i> Download Resume
+            </a>
+          </div>
+        </div>
+        <div class="md:w-2/5 flex justify-center">
+          <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-grey-800 shadow-lg transform hover:rotate-1 transition">
+            <!-- Replace with your profile image -->
+            <img src="/assets/profile_photo.jpeg" alt="Saiprakash Bollam" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-blue-500 opacity-10"></div>
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 text-center">
+              <span class="text-xs font-mono bg-blue-500 text-white px-2 py-1 rounded-full">Currently coding in: US</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-800">
+    <div class="max-w-7xl mx-auto">
+        <h2 class="text-3xl font-bold text-white mb-12 text-center section-title">
+          My Developer Toolkit
+        </h2>
+        
+        <div class="grid md:grid-cols-2 gap-12">
+          <div>
+            <h3 class="text-2xl font-semibold text-white mb-6 flex items-center">
+              <i class="fas fa-lightbulb text-blue-400 mr-3"></i>
+              My Approach
+            </h3>
+            <p class="text-gray-300 mb-6">
+              I believe great software should be like a good joke - efficient, 
+              well-timed, and never needing explanation. With my Oracle Java 
+              certification and 2+ years at LTIMindtree, I've mastered the art of:
+            </p>
+            <ul class="list-disc list-inside text-gray-300 space-y-2 mt-4 pl-5 marker:text-blue-400">
+              <li>Transforming <span class="font-medium text-blue-300">complex problems</span> into elegant solutions</li>
+              <li>Making <span class="font-medium text-blue-300">APIs faster</span> than my morning coffee routine</li>
+              <li><span class="font-medium text-blue-300">Mentoring teammates</span> while learning from them</li>
+              <li>Writing code so clean it could <span class="font-medium text-blue-300">pass a white-glove test</span></li>
+            </ul>
+            
+            <div class="mt-8 bg-gray-700 p-4 rounded-lg border-l-4 border-blue-500">
+              <p class="text-gray-300 italic">
+                "Debugging is like being a detective in a crime movie where you're also the murderer."
+                <span class="block text-right text-blue-400 mt-2 not-italic">- My developer mantra</span>
+              </p>
+            </div>
+          </div>
+          
+          <div>
+            <h3 class="text-2xl font-semibold text-white mb-6 flex items-center">
+              <i class="fas fa-tools text-blue-400 mr-3"></i>
+              Technical Arsenal
+            </h3>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+              <!-- Java -->
+              <div class="tech-icon bg-gray-700 p-4 rounded-lg flex flex-col items-center">
+                <i class="fab fa-java text-4xl text-blue-400 mb-2"></i>
+                <span class="text-sm font-medium">Java</span>
+                <span class="text-xs text-gray-400">Oracle SE 11 Certified</span>
+              </div>
+              <!-- Spring -->
+              <div class="tech-icon bg-gray-700 p-4 rounded-lg flex flex-col items-center">
+                <i class="fas fa-leaf text-4xl text-green-400 mb-2"></i>
+                <span class="text-sm font-medium">Spring</span>
+                <span class="text-xs text-gray-400 text-center">Boot | JPA | Security | MVC | REST | Microservices</span>
+              </div>
+              <!-- Angular -->
+              <div class="tech-icon bg-gray-700 p-4 rounded-lg flex flex-col items-center">
+                <i class="fab fa-angular text-4xl text-red-400 mb-2"></i>
+                <span class="text-sm font-medium">Angular</span>
+                <span class="text-xs text-gray-400">TypeScript | JS</span>
+              </div>
+              <!-- Database -->
+              <div class="tech-icon bg-gray-700 p-4 rounded-lg flex flex-col items-center">
+                <i class="fas fa-database text-4xl text-blue-400 mb-2"></i>
+                <span class="text-sm font-medium">MySQL</span>
+                <span class="text-xs text-gray-400">DBMS | Hibernate</span>
+              </div>
+              <!-- DevOps -->
+              <div class="tech-icon bg-gray-700 p-4 rounded-lg flex flex-col items-center">
+                <i class="fas fa-server text-4xl text-blue-400 mb-2"></i>
+                <span class="text-sm font-medium">DevOps</span>
+                <span class="text-xs text-gray-400">AWS | Docker | Jenkins</span>
+              </div>
+              <!-- Testing -->
+              <div class="tech-icon bg-gray-700 p-4 rounded-lg flex flex-col items-center">
+                <i class="fas fa-vial text-4xl text-blue-400 mb-2"></i>
+                <span class="text-sm font-medium">Testing</span>
+                <span class="text-xs text-gray-400">JUnit | Postman</span>
+              </div>
+            </div>
+            
+            <div class="mt-6 bg-gray-700 p-4 rounded-lg">
+              <h4 class="text-white font-medium mb-2 flex items-center">
+                <i class="fas fa-graduation-cap text-blue-400 mr-2"></i>
+                Currently Learning
+              </h4>
+              <p class="text-gray-300 text-sm">
+                Exploring AI integration with Spring Boot and diving deeper into cloud architecture patterns.
+                Because in tech, if you're not learning, you're becoming obsolete!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900">
+    <div class="max-w-7xl mx-auto">
+        <h2 class="text-3xl font-bold text-white mb-12 text-center section-title">
+          My Professional Journey
+        </h2>
+        
+        <div class="space-y-12">
+          <!-- LTIMindtree -->
+          <div class="fade-in relative pl-8 border-l-2 border-blue-500">
+            <div class="absolute left-[-9px] top-2 w-4 h-4 rounded-full bg-blue-500 border-4 border-gray-900 timeline-dot"></div>
+            
+            <div class="card p-6">
+              <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white">Software Engineer</h3>
+                  <p class="text-blue-400">LTIMindtree | Mumbai, India</p>
+                </div>
+                <div class="mt-2 md:mt-0">
+                  <span class="bg-blue-500 text-white px-2 py-1 rounded-md text-sm">Aug 2021 - Jul 2023</span>
+                </div>
+              </div>
+              
+              <div class="mt-4">
+                <h4 class="font-semibold text-white mb-2 flex items-center">
+                  <i class="fas fa-trophy text-blue-400 mr-2"></i>
+                  Key Achievements
+                </h4>
+                <ul class="list-disc list-inside text-gray-300 space-y-2 pl-5 marker:text-blue-400">
+                  <li>Engineered components that made our apps <span class="text-blue-300">30% faster</span> (and my manager 100% happier)</li>
+                  <li>Automated deployments with <span class="text-blue-300">Jenkins</span> - because clicking buttons is so 2010</li>
+                  <li>Mentored 3 juniors who now write code that <span class="text-blue-300">makes me proud</span></li>
+                  <li>Fixed Hibernate issues that everyone else was <span class="text-blue-300">too scared to touch</span></li>
+                </ul>
+              </div>
+              
+              <div class="mt-4">
+                <h4 class="font-semibold text-white mb-2 flex items-center">
+                  <i class="fas fa-cogs text-blue-400 mr-2"></i>
+                  Technologies Used
+                </h4>
+                <div class="flex flex-wrap gap-2">
+                  <span class="bg-gray-700 text-blue-400 text-xs px-2 py-1 rounded">Spring Boot</span>
+                  <span class="bg-gray-700 text-blue-400 text-xs px-2 py-1 rounded">Angular</span>
+                  <span class="bg-gray-700 text-blue-400 text-xs px-2 py-1 rounded">Hibernate</span>
+                  <span class="bg-gray-700 text-blue-400 text-xs px-2 py-1 rounded">MySQL</span>
+                  <span class="bg-gray-700 text-blue-400 text-xs px-2 py-1 rounded">Jenkins</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Teaching Assistant -->
+          <div class="fade-in relative pl-8 border-l-2 border-blue-500">
+            <div class="absolute left-[-9px] top-2 w-4 h-4 rounded-full bg-blue-500 border-4 border-gray-900 timeline-dot"></div>
+            
+            <div class="card p-6">
+              <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                <div>
+                  <h3 class="text-xl font-bold text-white">Software Engineer (Academic Systems & Automation)</h3>
+                  <p class="text-blue-400">SUNY Binghamton | New York, USA</p>
+                </div>
+                <div class="mt-2 md:mt-0">
+                  <span class="bg-blue-500 text-white px-2 py-1 rounded-md text-sm">Aug 2024 - May 2025</span>
+                </div>
+              </div>
+              
+              <div class="mt-4">
+                <h4 class="font-semibold text-white mb-2 flex items-center">
+                  <i class="fas fa-chalkboard-teacher text-blue-400 mr-2"></i>
+                  Key Contributions
+                </h4>
+                <ul class="list-disc list-inside text-gray-300 space-y-2 pl-5 marker:text-blue-400">
+                  <li>Built grading scripts that saved me from <span class="text-blue-300">60% of paperwork</span></li>
+                  <li>Helped 50+ students understand why <span class="text-blue-300">pointers</span> aren't as scary as they seem</li>
+                  <li>Learned that explaining concepts makes me <span class="text-blue-300">understand them better</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-800">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-3xl font-bold text-white mb-12 text-center section-title">
+        Education
+      </h2>
+      
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- SUNY Binghamton -->
+        <div class="fade-in education-card p-6 rounded-lg">
+          <div class="flex items-start">
+            <div class="bg-blue-500 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+              <i class="fas fa-university text-white"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-white">Master of Science in Computer Science</h3>
+              <p class="text-blue-400">State University of New York (SUNY) at Binghamton</p>
+              <div class="flex items-center mt-2">
+                <span class="text-gray-400 text-sm">Expected Graduation: May 2025</span>
+                <span class="mx-2 text-gray-500">•</span>
+                <span class="text-gray-400 text-sm">GPA: 3.9/4.0</span>
+              </div>
+              
+              <div class="mt-4">
+                <h4 class="font-semibold text-white mb-2 flex items-center">
+                  <i class="fas fa-book-open text-blue-400 mr-2"></i>
+                  Relevant Coursework
+                </h4>
+                <div class="flex flex-wrap gap-2">
+                  <span class="bg-gray-700 text-blue-400 text-xs px-2 py-1 rounded">Algorithms</span>
+                  <span class="bg-gray-700 text-blue-400 text-xs px-2 py-1 rounded">Database Systems</span>
+                  <span class="bg-gray-700 text-blue-400 text-xs px-2 py-1 rounded">Operating Systems</span>
+                  <span class="bg-gray-700 text-blue-400 text-xs px-2 py-1 rounded">Computer Security</span>
+                  <span class="bg-gray-700 text-blue-400 text-xs px-2 py-1 rounded">Artificial Intelligence</span>
+                </div>
+              </div>
+              
+              <div class="mt-4">
+                <h4 class="font-semibold text-white mb-2 flex items-center">
+                  <i class="fas fa-award text-blue-400 mr-2"></i>
+                  Achievements
+                </h4>
+                <ul class="list-disc list-inside text-gray-300 space-y-1 pl-5 marker:text-blue-400">
+                  <li>Oracle Certified Java SE 11 Developer</li>
+                  <li>Teaching Assistant for Systems Programming</li>
+                  <li>Maintained 3.9 GPA while working as TA</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Bachelor's Degree -->
+        <div class="fade-in education-card p-6 rounded-lg">
+          <div class="flex items-start">
+            <div class="bg-blue-500 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+              <i class="fas fa-graduation-cap text-white"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-white">Bachelor of Technology in Information Technology</h3>
+              <p class="text-blue-400">Chaitanya Bharathi Institute of Technolgy</p>
+              <div class="flex items-center mt-2">
+                <span class="text-gray-400 text-sm">Graduated: May 2021</span>
+              </div>
+              
+              <div class="mt-4">
+                <h4 class="font-semibold text-white mb-2 flex items-center">
+                  <i class="fas fa-lightbulb text-blue-400 mr-2"></i>
+                  Key Highlights
+                </h4>
+                <ul class="list-disc list-inside text-gray-300 space-y-1 pl-5 marker:text-blue-400">
+                  <li>Specialized in software development and system design</li>
+                  <li>Completed coursework in data structures and algorithms</li>
+                  <li>Participated in coding competitions and hackathons</li>
+                  <li>Developed several academic projects using Java and web technologies</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mt-12 text-center">
+        <a href="/assets/Saiprakash_Bollam.pdf" download class="inline-flex items-center bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-md font-medium transition duration-300">
+          <i class="fas fa-file-download mr-2"></i> Download Full Resume
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900">
+    <div class="max-w-7xl mx-auto">
+        <h2 class="text-3xl font-bold text-white mb-12 text-center section-title">
+          My Creations
+        </h2>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Smart Contact Manager -->
+          <div class="fade-in card rounded-lg overflow-hidden">
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <h3 class="text-xl font-bold text-white">Smart Contact Manager</h3>
+                <span class="bg-blue-500 text-white text-xs px-2 py-1 rounded">Spring Boot</span>
+              </div>
+              <p class="text-gray-300 mb-4">
+                Built after losing my contacts for the third time. Now with security 
+                so tight even I can't accidentally delete my data.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="bg-gray-700 text-blue-400 text-xs px-2 py-1 rounded">Spring Security</span>
+                <span class="bg-gray-700 text-blue-400 text-xs px-2 py-1 rounded">MySQL</span>
+                <span class="bg-gray-700 text-blue-400 text-xs px-2 py-1 rounded">AWS</span>
+              </div>
+              <div class="flex space-x-3">
+                <a href="https://github.com/Saiprakash17/SmartContactManager" target="_blank" class="text-blue-400 hover:text-blue-300 flex items-center">
+                  <i class="fab fa-github mr-1"></i> View Code
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Insure Beta -->
+          <div class="fade-in card rounded-lg overflow-hidden">
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <h3 class="text-xl font-bold text-white">Vehicle Insurance (Insure Beta)</h3>
+                <span class="bg-blue-500 text-white text-xs px-2 py-1 rounded">Full Stack</span>
+              </div>
+              <p class="text-gray-300 mb-4">
+                Because insurance paperwork should be painless. Made claims processing 
+                30% faster and my client 100% happier.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="bg-gray-700 text-blue-400 text-xs px-2 py-1 rounded">Angular</span>
+                <span class="bg-gray-700 text-blue-400 text-xs px-2 py-1 rounded">Hibernate</span>
+                <span class="bg-gray-700 text-blue-400 text-xs px-2 py-1 rounded">REST API</span>
+              </div>
+              <div class="flex space-x-3">
+                <a href="https://github.com/Saiprakash17/InsureBeta" target="_blank" class="text-blue-400 hover:text-blue-300 flex items-center">
+                  <i class="fab fa-github mr-1"></i> View Code
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mt-12 text-center">
+          <a href="https://github.com/Saiprakash17" target="_blank" class="inline-flex items-center text-blue-400 hover:text-blue-300">
+            <i class="fab fa-github mr-2 text-xl"></i>
+            <span>See more projects on GitHub</span>
+            <i class="fas fa-arrow-right ml-1"></i>
+          </a>
+        </div>
+      </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-800">
+    <div class="max-w-7xl mx-auto">
+        <h2 class="text-3xl font-bold text-white mb-12 text-center section-title">
+          Let's Connect
+        </h2>
+        
+        <div class="grid md:grid-cols-2 gap-12">
+          <div>
+            <h3 class="text-xl font-semibold text-white mb-6 text-center md:text-left">
+              <i class="fas fa-paper-plane text-blue-400 mr-2"></i>
+              Get In Touch
+            </h3>
+            <div class="space-y-6">
+              <div class="flex items-start bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition">
+                <div class="flex-shrink-0 bg-blue-500 rounded-full p-3 mr-4">
+                  <i class="fas fa-envelope text-white"></i>
+                </div>
+                <div>
+                  <h4 class="text-white font-medium">Email</h4>
+                  <a href="mailto:saiprakash.bollam17@gmail.com" class="text-gray-300 hover:text-blue-400 break-all">saiprakash.bollam17@gmail.com</a>
+                </div>
+              </div>
+              
+              <div class="flex items-start bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition">
+                <div class="flex-shrink-0 bg-blue-500 rounded-full p-3 mr-4">
+                  <i class="fab fa-linkedin-in text-white"></i>
+                </div>
+                <div>
+                  <h4 class="text-white font-medium">LinkedIn</h4>
+                  <a href="https://www.linkedin.com/in/saiprakashbollam/" target="_blank" class="text-gray-300 hover:text-blue-400">linkedin.com/in/saiprakashbollam</a>
+                </div>
+              </div>
+              
+              <div class="flex items-start bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition">
+                <div class="flex-shrink-0 bg-blue-500 rounded-full p-3 mr-4">
+                  <i class="fab fa-github text-white"></i>
+                </div>
+                <div>
+                  <h4 class="text-white font-medium">GitHub</h4>
+                  <a href="https://github.com/Saiprakash17" target="_blank" class="text-gray-300 hover:text-blue-400">github.com/Saiprakash17</a>
+                </div>
+              </div>
+              
+              <div class="bg-gray-800 p-4 rounded-lg border border-blue-500/20 mt-8">
+                <h4 class="text-white font-medium mb-2 flex items-center">
+                  <i class="fas fa-lightbulb text-blue-400 mr-2"></i>
+                  Quick Tip
+                </h4>
+                <p class="text-gray-300 text-sm">
+                  The best way to reach me is via email or LinkedIn. I typically respond within 
+                  <span class="text-white">24 hours</span> - unless I'm deep in code (then it might take 48).
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <h3 class="text-xl font-semibold text-white mb-6 text-center md:text-left">
+              <i class="fas fa-comment-dots text-blue-400 mr-2"></i>
+              Send Me a Message
+            </h3>
+            <form class="space-y-4">
+              <div>
+                <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Your Name</label>
+                <input type="text" id="name" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white" placeholder="What should I call you?">
+              </div>
+              
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Your Email</label>
+                <input type="email" id="email" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white" placeholder="Where can I reply?">
+              </div>
+              
+              <div>
+                <label for="message" class="block text-sm font-medium text-gray-300 mb-1">Your Message</label>
+                <textarea id="message" rows="4" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white" placeholder="What would you like to discuss?"></textarea>
+              </div>
+              
+              <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-md font-medium transition duration-300 w-full flex items-center justify-center">
+                <i class="fas fa-paper-plane mr-2"></i> Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 py-8 px-4 sm:px-6 lg:px-8 border-t border-gray-700">
+    <div class="max-w-7xl mx-auto text-center">
+      <p class="text-gray-400">© 2024 Saiprakash Bollam. Built with <i class="fas fa-heart text-red-400"></i> and <i class="fas fa-coffee text-yellow-400"></i></p>
+      <div class="flex justify-center space-x-6 mt-4">
+        <a href="https://github.com/Saiprakash17" target="_blank" class="text-gray-400 hover:text-white">
+          <i class="fab fa-github text-xl"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/saiprakashbollam/" target="_blank" class="text-gray-400 hover:text-white">
+          <i class="fab fa-linkedin-in text-xl"></i>
+        </a>
+        <a href="mailto:saiprakash.bollam17@gmail.com" class="text-gray-400 hover:text-white">
+          <i class="fas fa-envelope text-xl"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- AI Chat Widget with Hugging Face Integration -->
+  <div id="chat-widget" class="fixed bottom-6 right-6 w-80 bg-gray-800 rounded-lg shadow-xl border border-gray-700 z-50 hidden">
+    <div class="bg-gray-900 px-4 py-3 flex justify-between items-center border-b border-gray-700">
+      <h3 class="text-white font-medium">Ask Me Anything</h3>
+      <button id="close-chat" class="text-gray-400 hover:text-white focus:outline-none">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    
+    <div id="chat-messages" class="h-64 p-4 overflow-y-auto space-y-3">
+      <div class="chat-message bot-message p-3">
+        Hi there! I'm an AI assistant for Saiprakash. Ask me about his experience, projects, or skills.
+      </div>
+    </div>
+    
+    <div class="border-t border-gray-700 p-3 bg-gray-900">
+      <div class="flex">
+        <input id="chat-input" type="text" placeholder="Type your question..." class="flex-grow bg-gray-700 text-white px-3 py-2 rounded-l-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+        <button id="send-message" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-r-md">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chat Toggle Button -->
+  <button id="chat-toggle" class="fixed bottom-6 right-6 bg-blue-500 hover:bg-blue-600 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center z-40">
+    <i class="fas fa-comment-dots text-xl"></i>
+  </button>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="fixed bottom-20 right-6 bg-blue-500 hover:bg-blue-600 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center z-40 hidden">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- JavaScript -->
+  <script>
+    // Mobile menu toggle
+    document.getElementById('mobile-menu-button').addEventListener('click', function() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    });
+
+    // Scroll animations
+    const fadeElements = document.querySelectorAll('.fade-in');
+    
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    fadeElements.forEach(element => fadeObserver.observe(element));
+
+    // Back to top button
+    const backToTopButton = document.getElementById('back-to-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.remove('hidden');
+      } else {
+        backToTopButton.classList.add('hidden');
+      }
+    });
+    
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+          
+          // Close mobile menu if open
+          const mobileMenu = document.getElementById('mobile-menu');
+          if (!mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+          }
+        }
+      });
+    });
+
+    // send message to mail
+    document.querySelector("form").addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const formData = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        message: document.getElementById("message").value,
+      };
+
+      const response = await fetch("/.netlify/functions/email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+      alert(result.success || result.error);
+    });
+
+
+    // Chat widget functionality with Hugging Face integration
+    const chatWidget = document.getElementById('chat-widget');
+    const chatToggle = document.getElementById('chat-toggle');
+    const closeChat = document.getElementById('close-chat');
+    const chatMessages = document.getElementById('chat-messages');
+    const chatInput = document.getElementById('chat-input');
+    const sendMessageBtn = document.getElementById('send-message');
+    
+    let isChatOpen = false;
+    
+    chatToggle.addEventListener('click', () => {
+      isChatOpen = !isChatOpen;
+      if (isChatOpen) {
+        chatWidget.classList.remove('hidden');
+        chatToggle.classList.add('hidden');
+      } else {
+        chatWidget.classList.add('hidden');
+        chatToggle.classList.remove('hidden');
+      }
+    });
+    
+    closeChat.addEventListener('click', () => {
+      chatWidget.classList.add('hidden');
+      chatToggle.classList.remove('hidden');
+      isChatOpen = false;
+    });
+    
+    function addMessage(sender, message) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `chat-message ${sender}-message p-3`;
+      messageDiv.textContent = message;
+      chatMessages.appendChild(messageDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    
+    function addTypingIndicator() {
+      const typingDiv = document.createElement('div');
+      typingDiv.className = 'chat-message bot-message p-3';
+      typingDiv.id = 'typing-indicator';
+      
+      const typingContent = document.createElement('div');
+      typingContent.className = 'typing-indicator';
+      
+      for (let i = 0; i < 3; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'typing-dot';
+        typingContent.appendChild(dot);
+      }
+      
+      typingDiv.appendChild(typingContent);
+      chatMessages.appendChild(typingDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      
+      return typingDiv;
+    }
+    
+    function removeTypingIndicator() {
+      const typingIndicator = document.getElementById('typing-indicator');
+      if (typingIndicator) {
+        typingIndicator.remove();
+      }
+    }
+
+    async function getAIResponse(message) {
+    try {
+        const response = await fetch('/.netlify/functions/get-ai-response', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message }),
+        });
+        const data = await response.json();
+        if (response.ok) {
+        return data.answer;
+        } else {
+        return "I'm having trouble responding right now. Please try again later.";
+        }
+    } catch (error) {
+        console.error("Error calling Netlify function:", error);
+        return "There was an error processing your request. Please try again.";
+    }
+    }
+
+    
+    async function handleUserMessage() {
+      const message = chatInput.value.trim();
+      if (message === '') return;
+      
+      addMessage('user', message);
+      chatInput.value = '';
+      
+      // Show typing indicator
+      const typingIndicator = addTypingIndicator();
+      
+      try {
+        const response = await getAIResponse(message);
+        removeTypingIndicator();
+        addMessage('bot', response);
+      } catch (error) {
+        removeTypingIndicator();
+        addMessage('bot', "Sorry, I'm having trouble responding right now. Please try again later.");
+        console.error("Error handling message:", error);
+      }
+    }
+    
+    sendMessageBtn.addEventListener('click', handleUserMessage);
+    chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        handleUserMessage();
+      }
+    });
+
+    
+  </script>
+</body>
+</html>
