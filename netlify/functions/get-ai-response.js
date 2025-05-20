@@ -35,7 +35,7 @@ exports.handler = async (event) => {
     - Name: Saiprakash Bollam
     - Location: United States
     - Education: Master's student at SUNY Binghamton (GPA: 3.9)
-    - Experience: 2 years at LTIMindtree as Software Engineer(Aug 2021 - Jul 2023), 1 year as software engineer(Academic Systems & Automation) at SUNY Binghamton(Aug 2024 - May 2025)
+    - Experience: 2 years at LTIMindtree as Software Engineer(Aug 2021 - Jul 2023), 2 year as software engineer(Academic Systems & Automation) at SUNY Binghamton(Aug 2023 - May 2025)
     - Programming Languages: Java, Python, SQL, C, C++
     - Frameworks: Spring Boot, Hibernate, Angular, Spring MVC, Spring Data JPA, Spring Security, OAuth, JUnit, REST APIs, Microservices, Web services
     - Web Technologies: HTML5, CSS3, JavaScript, TypeScript, TailwindCSS
